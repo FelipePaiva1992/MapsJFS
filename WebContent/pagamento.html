@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">  
+      
+	<head jsf:id="head">
+		<meta charset="utf-8"></meta>
+			<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+			<title>Pagamentos</title>	
+			
+			<script>
+			//<![CDATA[
+        	function parcelaPagamento(){
+				var tipoPag = document.getElementById('tipoPagamento').value;
+				alert(tipoPag);
+				html = "";
+				html += "<select onchange='parcelaPagamento()' id='tipoPagamento'>";
+				html += "	<option selected='selected'>Parcelas</option>";
+				
+				if(tipoPag == "3" ||tipoPag == "2" ){
+					html += "	<option value='1'>1x</option>";
+					html += "	<option value='2'>2x</option>";
+					html += "	<option value='3'>3x</option>";
+					html += "	<option value='1'>4x</option>";
+					html += "	<option value='2'>5x</option>";
+					html += "	<option value='3'>6x</option>";
+				}
+				if(tipoPag == "1"){
+					html += "	<option value='1'>1x</option>";
+				}
+				
+				
+				html += "</select>";
+				
+				document.getElementById('parcelamento').html(html);
+			}   
+			           
+           //]]>
+			</script>	
+	</head>
+	
+	<body jsf:id="body">
+		<h2>Pagamentos</h2>
+		<div id="campoPagamento">		
+			<div style="float: left;width: 20%" id="formaPagamento">
+				<input type="button" value="Boleto"/>
+				<br/>
+				<input type="button" value="Cartão Credito"/>
+				<br/>
+				<input type="button" value="Cheque"/>
+				<br/>
+			</div>
+			<div style="float: left;width:80%;text-align: center;" id="detalhePagamento">
+				<h3>Dados Pagamento</h3>
+				<br/>
+				<input type="text" placeholder="Nome do Cliente"/>
+				<br/>
+				<select>
+					<option value="" selected="selected">Selecione o Agendamento</option>
+					<option value="1">Agendamento ref.: 10</option>
+				</select>
+				<br/>
+				<h1 style="float: right;">Total = R$100</h1>
+				<br/>
+				<select onchange="parcelaPagamento()" id="tipoPagamento">
+					<option value="" selected="selected">Forma de Pagamento</option>
+					<option value="1">Dinheiro</option>
+					<option value="2">Cartão</option>
+					<option value="3">Cheque</option>
+				</select>
+				<br/>
+				<div id="parcelamento"></div>
+			</div>
+		</div>
+	</body>
+</html>
